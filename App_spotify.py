@@ -94,6 +94,7 @@ def main():
     st.write('Melhores músicas:')
     
     musicas_em_pares = zip_longest(musicas[::2], musicas[1::2])
+    contador = 1
 
     for musica1, musica2 in musicas_em_pares:
         with st.container(border=True):
@@ -106,7 +107,7 @@ def main():
                     popularidade_musica1 = musica1['popularity']
                     link_musica1 = musica1['external_urls']['spotify']
                     link_em_markdown1 = f'[{nome_musica1}]({link_musica1})'
-                    st.markdown(f'{link_em_markdown1}: (pop: {popularidade_musica1})')
+                    st.markdown(f'**{contador}. {nome_musica1}**: (pop: {popularidade_musica1})')
                     st.image(musica1['album']['images'][0]['url'], width=200)
             
             # Segunda música
@@ -116,9 +117,13 @@ def main():
                     popularidade_musica2 = musica2['popularity']
                     link_musica2 = musica2['external_urls']['spotify']
                     link_em_markdown2 = f'[{nome_musica2}]({link_musica2})'
-                    st.markdown(f'{link_em_markdown2}: (pop: {popularidade_musica2})')
+                    st.markdown(f'**{contador + 1}. {nome_musica2}**: (pop: {popularidade_musica2})')
                     st.image(musica2['album']['images'][0]['url'], width=200)
+        
+        # Incrementa o contador em 2 (pois são exibidas duas músicas por iteração)
+        contador += 2
                 
+
 
 
 if __name__ == '__main__':
